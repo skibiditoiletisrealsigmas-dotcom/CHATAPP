@@ -1,0 +1,154 @@
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#080808;
+  --s1:#111;
+  --s2:#1a1a1a;
+  --s3:#222;
+  --border:#2c2c2c;
+  --red:#7a1010;
+  --red2:#c0392b;
+  --text:#efefef;
+  --muted:#666;
+  --r:20px;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
+
+/* ── LOGIN ── */
+#loginScreen{height:100dvh;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+.loginCard{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 28px;width:100%;max-width:340px}
+.loginCard h1{font-size:40px;font-weight:900;letter-spacing:-2px;color:var(--red2);margin-bottom:12px}
+.loginCard input{width:100%;padding:14px 16px;background:var(--s2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;outline:none;transition:border-color .2s}
+.loginCard input:focus{border-color:var(--red2)}
+.loginCard input::placeholder{color:var(--muted)}
+.loginCard button{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s}
+.loginCard button:hover{background:var(--red2)}
+
+/* ── CHAT SCREEN ── */
+#chatScreen{display:flex;flex-direction:column;height:100dvh}
+
+/* HEADER */
+#header{display:flex;align-items:center;gap:8px;padding:10px 10px;background:var(--s1);border-bottom:1px solid var(--border);flex-shrink:0}
+#headerInfo{flex:1}
+#headerRoom{font-weight:700;font-size:15px}
+#headerSub{font-size:11px;color:var(--muted);margin-top:1px}
+.callBtn{color:var(--red2)!important}
+
+/* ICON BTN */
+.iconBtn{width:38px;height:38px;background:none;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:background .15s,color .15s;flex-shrink:0}
+.iconBtn svg{width:20px;height:20px}
+.iconBtn:hover{background:var(--s2);color:var(--text)}
+.iconBtn.recording{color:var(--red2)!important;animation:pulse .7s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* CHAT BOX */
+#chatBox{flex:1;overflow-y:auto;padding:12px 10px 4px;display:flex;flex-direction:column;gap:2px;scroll-behavior:smooth;scrollbar-width:none}
+#chatBox::-webkit-scrollbar{display:none}
+
+/* TYPING */
+#typingBar{min-height:20px;padding:2px 14px 2px;font-size:12px;color:var(--muted);font-style:italic;flex-shrink:0}
+
+/* INPUT BAR */
+#inputBar{display:flex;align-items:center;gap:4px;padding:8px 8px;background:var(--s1);border-top:1px solid var(--border);flex-shrink:0}
+#messageInput{flex:1;padding:10px 14px;background:var(--s2);border:1px solid var(--border);border-radius:22px;color:var(--text);font-size:15px;outline:none;min-width:0;transition:border-color .2s}
+#messageInput:focus{border-color:var(--red)}
+#messageInput::placeholder{color:var(--muted)}
+#sendBtn{width:38px;height:38px;background:var(--red);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;flex-shrink:0;transition:background .15s}
+#sendBtn svg{width:17px;height:17px}
+#sendBtn:hover{background:var(--red2)}
+
+/* ── STICKER PANEL ── */
+#stickerPanel{background:var(--s1);border-top:1px solid var(--border);flex-shrink:0;height:220px;display:flex;flex-direction:column;animation:slideUp .2s ease}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+#stickerCats{display:flex;gap:4px;padding:8px 10px 6px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+#stickerCats::-webkit-scrollbar{display:none}
+.catBtn{background:none;border:none;font-size:22px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background .15s;flex-shrink:0;opacity:.5}
+.catBtn.active{background:var(--s3);opacity:1}
+#stickerGrid{flex:1;overflow-y:auto;padding:8px 10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:4px;scrollbar-width:none}
+#stickerGrid::-webkit-scrollbar{display:none}
+.stickerBtn{background:none;border:none;font-size:28px;cursor:pointer;padding:4px;border-radius:8px;transition:background .15s;text-align:center}
+.stickerBtn:hover{background:var(--s3)}
+
+/* ── MESSAGES ── */
+.msgRow{display:flex;align-items:flex-end;gap:6px;animation:msgIn .2s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msgRow.mine{flex-direction:row-reverse}
+.msgAvatar{width:26px;height:26px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-bottom:2px}
+.msgAvatar.hide{visibility:hidden}
+.msgWrap{display:flex;flex-direction:column;max-width:72%;gap:2px}
+.msgRow.mine .msgWrap{align-items:flex-end}
+.senderName{font-size:11px;color:var(--muted);padding:0 10px;margin-bottom:2px}
+.bubble{padding:9px 13px;border-radius:var(--r);font-size:14px;line-height:1.5;word-break:break-word;cursor:pointer;transition:opacity .15s;position:relative}
+.bubble:active{opacity:.7}
+.mine .bubble{background:var(--red);color:#fff;border-bottom-right-radius:5px}
+.others .bubble{background:var(--s2);color:var(--text);border-bottom-left-radius:5px}
+
+/* sticker bubble */
+.bubble.stickerBubble{background:none!important;padding:4px;font-size:48px;line-height:1}
+
+/* image bubble */
+.bubble.imgBubble{padding:3px;background:transparent!important}
+.bubble.imgBubble img{max-width:200px;max-height:200px;border-radius:14px;display:block;object-fit:cover;cursor:pointer}
+
+/* voice bubble */
+.bubble.voiceBubble{display:flex;align-items:center;gap:10px;min-width:150px}
+.playBtn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:inherit;flex-shrink:0;font-size:12px;transition:background .15s}
+.playBtn:hover{background:rgba(255,255,255,.25)}
+.waveform{flex:1;height:22px;display:flex;align-items:center;gap:2px}
+.waveform span{flex:1;border-radius:2px;background:rgba(255,255,255,.3);min-height:3px;transition:background .2s}
+.waveform.playing span{background:rgba(255,255,255,.7);animation:waveBounce .6s infinite alternate ease-in-out}
+.waveform.playing span:nth-child(2n){animation-delay:.1s}
+.waveform.playing span:nth-child(3n){animation-delay:.2s}
+@keyframes waveBounce{from{transform:scaleY(.5)}to{transform:scaleY(1.2)}}
+.voiceDur{font-size:11px;opacity:.7;white-space:nowrap}
+
+.msgTime{font-size:10px;color:var(--muted);padding:1px 10px;display:none}
+.msgRow.showTime .msgTime{display:block}
+.dateDivider{text-align:center;font-size:11px;color:var(--muted);margin:10px 0 6px}
+
+/* ── IMAGE VIEWER ── */
+#imgViewer{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#imgViewerSrc{max-width:95vw;max-height:80vh;border-radius:10px;object-fit:contain}
+#imgViewerActions{display:flex;gap:12px;margin-top:16px}
+#imgViewerActions button{display:flex;align-items:center;gap:8px;padding:10px 20px;background:var(--s2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;cursor:pointer;transition:background .15s}
+#imgViewerActions button:hover{background:var(--s3)}
+
+/* ── CALL UI ── */
+#incomingCallUI{position:fixed;inset:0;z-index:300;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.8)}
+#incomingCallCard{background:var(--s1);border:1px solid var(--border);border-radius:24px 24px 0 0;width:100%;max-width:400px;padding:32px 24px 40px;display:flex;flex-direction:column;align-items:center;gap:12px;animation:slideUp .3s ease}
+.callAvatar{width:72px;height:72px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;margin-bottom:4px}
+#incomingCallName{font-size:20px;font-weight:700}
+.callSubtitle{font-size:13px;color:var(--muted)}
+.callActions{display:flex;gap:40px;margin-top:16px}
+.callActionBtn{width:64px;height:64px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s}
+.callActionBtn.decline{background:#c0392b}
+.callActionBtn.decline svg{color:#fff;transform:rotate(135deg)}
+.callActionBtn.accept{background:#27ae60}
+.callActionBtn.accept svg{color:#fff}
+.callActionBtn:hover{opacity:.85}
+
+#callUI{position:fixed;inset:0;z-index:300;background:rgba(5,5,5,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.callWave{display:flex;gap:6px;align-items:center;height:50px;margin-bottom:8px}
+.callWave span{width:6px;border-radius:3px;background:var(--red2);animation:callWave 1s infinite ease-in-out}
+.callWave span:nth-child(1){animation-delay:0s}
+.callWave span:nth-child(2){animation-delay:.1s}
+.callWave span:nth-child(3){animation-delay:.2s}
+.callWave span:nth-child(4){animation-delay:.3s}
+.callWave span:nth-child(5){animation-delay:.4s}
+@keyframes callWave{0%,100%{height:8px;opacity:.4}50%{height:42px;opacity:1}}
+#callWithName{font-size:22px;font-weight:700}
+#callStatus{font-size:14px;color:var(--muted)}
+.activeCallActions{display:flex;gap:24px;align-items:center;margin-top:24px}
+.callCtrl{width:52px;height:52px;background:var(--s2)!important;color:var(--text)!important}
+.callCtrl.active{background:var(--s3)!important}
+.callEndBtn{width:64px;height:64px;border-radius:50%;background:var(--red2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
+.callEndBtn:hover{background:#e74c3c}
+.callCtrl svg{width:22px;height:22px}
+
+/* ── DELETE MENU ── */
+#menuOverlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
+#deleteMenu{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid var(--border);border-radius:16px;overflow:hidden;z-index:100;width:260px;animation:slideUp .2s ease}
+#deleteMenu button{width:100%;padding:16px;background:none;border:none;font-size:15px;cursor:pointer;font-family:inherit;display:block;transition:background .15s}
+.delBtn{color:var(--red2);border-bottom:1px solid var(--border)!important}
+.cancelBtn{color:var(--muted)}
+#deleteMenu button:hover{background:var(--s3)}
